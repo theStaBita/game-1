@@ -6,21 +6,50 @@ We like the idea of making a game, so we want to make a game, and there's no tim
 
 ## What is the game?
 
-🤷‍♀️ 
+game is a... well you know... written in [Phaser][phaser].
+More details yet to come.
 
 ## How do I play the game?
 
-🙁
+To play the game you need to run a server -- but don't be scared!
+It's actually really easy!
+
+### MacOS / Linux
+
+Clone this git repository and navigate to the directory.
+
+```
+$ git clone https://github.com/ElijahCaine/game.git
+$ cd game/
+```
+
+Next, use Python to launch a webserver:
+
+```
+$ python3 -m http.server
+Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+```
+
+or if you only have python2 installed:
+
+```
+$ python2 -m SimpleHTTPServer
+Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+```
+
+In your browser nagivate to http://localhost:8000/game and play!
+
+### Windows
+
+Please tell me how to do this.
+I have no idea.
 
 ## What did you use to make the game?
 
-There's no decided framework, code, or engine at the moment.
+game is written in JavaScript using the [Phaser][phaser] framework.
+Specifically the Community Edition fwiw.
 
-Here's some ideas of frameworks to use:
-
-- [phaser](https://github.com/photonstorm/phaser) (JavaScript)
-- [piston](https://github.com/PistonDevelopers/piston) (Rust)
-- [love](https://love2d.org/) (lua)
+This was decided in [issue #3][issue-3] and first implemented in [pull request #4][pr-4]
 
 ## Direction?
 
@@ -47,3 +76,7 @@ Issues are contributions too.
 ## License?
 
 Currently this is licensed under MIT, but that will probably chage. I expect it'll be dual licensed Apache2.0 / Creative Commons, but whose to say?
+
+[issue-3]: https://github.com/ElijahCaine/game/issues/3
+[pr-4]: https://github.com/ElijahCaine/game/pull/4
+[phaser]: https://github.com/photonstorm/phaser
