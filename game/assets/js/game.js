@@ -9,10 +9,20 @@ let run_game = function() {
         game.load.image('ledge', 'assets/img/roguelike/Ledge-Single.png');
     }
 
-    let platforms
+    let platforms;
+    var text;
 
     function create () {
         game.physics.startSystem(Phaser.Physics.ARCADE);
+
+        text = game.add.text(game.world.centerX, (game.world.centerY)/4, "SCORE: !", {
+            font: "65px Arial",
+            fill: "#FFFFFF",
+            align: "center",
+            fontWeight: "bold"
+        });
+
+        text.anchor.setTo(0.5, 0.5);
 
         platforms = game.add.group();
         platforms.enableBody = true;
@@ -36,6 +46,7 @@ let run_game = function() {
         ledge.scale.setTo(7,7);
 
         player = game.add.sprite(32, game.world.height - 150, 'player');
+        player.points = 0;
         game.physics.arcade.enable(player);
 
         player.smoothed = false;
@@ -47,6 +58,26 @@ let run_game = function() {
         //  Our two animations, walking left and right.
         // player.animations.add('left', [0, 1, 2, 3], 10, true);
         // player.animations.add('right', [5, 6, 7, 8], 10, true);
+
+        stars = game.add.group();
+
+        stars.enableBody = true;
+
+        //  Here we'll create 12 of them evenly spaced apart
+        for (var i = 0; i < 12; i++)
+        {
+            //  Create a star inside of the 'stars' group
+            var star = stars.create(i * 70, 0, 'item');
+
+            //  Let gravity do its thing
+            star.body.gravity.y = 98;
+
+            //  This just gives each star a slightly random bounce value
+            star.body.bounce.y = 0.7 + Math.random() * 0.2;
+
+            star.smoothed = false;
+            star.scale.setTo(7,7);
+        }
     }
 
     function update() {
@@ -84,5 +115,15 @@ let run_game = function() {
         {
             player.body.velocity.y = -350;
         }
+
+        game.physics.arcade.collide(stars, platforms);
+        game.physics.arcade.overlap(player, stars, collectStar, null, this);
+    }
+
+    function collectStar (player, star) {
+        // Removes the star from the screen
+        star.kill();
+        player.points += 101;
+        text.setText("SCORE: " + player.points + "!");
     }
 }
