@@ -35,12 +35,16 @@ let run_game = function() {
             ground[i].body.immovable = true;
         }
 
-        var ledge = platforms.create(400, 400, 'ledge');
+        var ledge = platforms.create(500, 480, 'ledge');
         ledge.body.immovable = true;
         ledge.immovable = true;
         ledge.smoothed = false;
         ledge.scale.setTo(7,7);
-        ledge = platforms.create(150, 250, 'ledge');
+        ledge = platforms.create(550, 430, 'ledge');
+        ledge.smoothed = false;
+        ledge.body.immovable = true;
+        ledge.scale.setTo(7,7);
+        ledge = platforms.create(320, 350, 'ledge');
         ledge.smoothed = false;
         ledge.body.immovable = true;
         ledge.scale.setTo(7,7);
@@ -52,7 +56,7 @@ let run_game = function() {
         player.smoothed = false;
         player.scale.setTo(7,7);
         player.body.bounce.y = 0.2;
-        player.body.gravity.y = 300;
+        player.body.gravity.y = 700;
         player.body.collideWorldBounds = true;
 
         //  Our two animations, walking left and right.
